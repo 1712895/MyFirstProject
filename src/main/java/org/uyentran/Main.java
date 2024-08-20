@@ -1,18 +1,33 @@
 package org.uyentran;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();
+    static WebDriver driver = new ChromeDriver();
+    public static void main(String[] args) throws InterruptedException {
         driver.get("https://dev.payos.vn/login");
         login();
+        Thread.sleep(1000);
+        chooseOganize();
         }
     public static void login()
     {
-
+        WebElement txtEmail = driver.findElement(By.xpath("//input[@name=\"email\"]"));
+        txtEmail.sendKeys("diemuyen58@gmail.com");
+        WebElement txtPassword = driver.findElement(By.xpath("//input[@name=\"password\"]"));
+        txtPassword.sendKeys("diemuyen58");
+        WebElement btnLogin = driver.findElement(By.xpath("//button[@type=\"submit\"]"));
+        btnLogin.click();
     }
+    public static void chooseOganize()
+    {
+
+        driver.findElement(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")).click();
+    }
+
     }
