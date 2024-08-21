@@ -12,7 +12,11 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://dev.payos.vn/login");
         login();
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         chooseOganize();
         }
     public static void login()
@@ -26,8 +30,11 @@ public class Main {
     }
     public static void chooseOganize()
     {
-
         driver.findElement(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")).click();
+    }
+    public static void AddPaymentMethod()
+    {
+        
     }
 
     }
