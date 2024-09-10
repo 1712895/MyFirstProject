@@ -1,4 +1,4 @@
-package org.uyentran;
+package BT2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,26 +14,26 @@ import java.time.Duration;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static WebDriver driver = new ChromeDriver();
-    static Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     public static void main(String[] args) throws InterruptedException {
-        //BT4
-        driver.get("https://globedr.com/signin");
-        login();
+        //BT2
+        driver.get("https://dev.payos.vn/login");
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        //chooseOganize();
+        login();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")));
+        chooseOganize();
         }
     public static void login()
     {
-        WebElement txtEmail = driver.findElement(By.xpath("//div/input[@id=\"UserName\"]"));
-        txtEmail.sendKeys("+13434804615");
-        WebElement txtPassword = driver.findElement(By.xpath("//div/input[@id=\"Password\"]"));
-        txtPassword.sendKeys("12345678");
-        WebElement btnLogin = driver.findElement(By.xpath("//div/button[@translate=\"signIn\"]"));
+        WebElement txtEmail = driver.findElement(By.xpath("//input[@name=\"email\"]"));
+        txtEmail.sendKeys("diemuyen58@gmail.com");
+        WebElement txtPassword = driver.findElement(By.xpath("//input[@name=\"password\"]"));
+        txtPassword.sendKeys("diemuyen58");
+        WebElement btnLogin = driver.findElement(By.xpath("//button[@type=\"submit\"]"));
         btnLogin.click();
     }
     public static void chooseOganize()
     {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")));
         driver.findElement(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")).click();
     }
     public static void AddPaymentMethod()
