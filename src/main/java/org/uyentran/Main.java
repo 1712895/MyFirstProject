@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,25 +21,22 @@ public class Main {
         driver.get("https://globedr.com/signin");
         login();
 
-        //chooseOganize();
+        //updateUserProfile();
         }
     public static void login()
     {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/input[@id=\"UserName\"]")));
         WebElement txtEmail = driver.findElement(By.xpath("//div/input[@id=\"UserName\"]"));
         txtEmail.sendKeys("+13434804615");
         WebElement txtPassword = driver.findElement(By.xpath("//div/input[@id=\"Password\"]"));
         txtPassword.sendKeys("12345678");
-        WebElement btnLogin = driver.findElement(By.xpath("//div/button[@translate=\"signIn\"]"));
+        WebElement btnLogin = driver.findElement(By.xpath("//div/button[contains(@translate,\"signIn\")]"));
         btnLogin.click();
     }
-    public static void chooseOganize()
+    public static void updateUserProfile()
     {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")));
-        driver.findElement(By.xpath("//div/div/div/following-sibling::div/div/following-sibling::div/div/div/div/div")).click();
+
     }
-    public static void AddPaymentMethod()
-    {
-        
-    }
+
 
     }
