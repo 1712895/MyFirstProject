@@ -17,7 +17,7 @@ import java.time.Duration;
 public class Main {
 
     static WebDriver driver = new ChromeDriver();
-    static Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    static Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
     public static void main(String[] args) throws InterruptedException {
         ChromeOptions chomeOptions = new ChromeOptions();
@@ -27,24 +27,24 @@ public class Main {
         driver.manage().window().maximize();
 
         driver.get("https://globedr.com/signin");
-        login();
+        login(); //Ko chay duoc -> Chua kiem duoc bug
 
         }
     public static void login()
     {
-        By txtEmail = By.xpath("//input[@id='UserName']");
-        By dlCountry = By.xpath("//input[@dropdowntoggle]");
+        By txtUserName = By.xpath("//input[@id='UserName']");
+        By dlCountry = By.xpath("//button[@dropdowntoggle]");
         By txtPassword = By.xpath("//input[@id='Password']");
         By btnLogin = By.xpath("//button[contains(@translate,'signIn')]");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(txtEmail));
-        driver.findElement(txtEmail).sendKeys("13434804615");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(txtUserName));
+        driver.findElement(txtUserName).sendKeys("+13434804615"); //Test case: SDT Canada (+1)
         wait.until( d -> {
             WebElement element = driver.findElement(dlCountry);
             if(element!=null)
             {
                 String txt = element.getText();
-                if (txt!=null && !txt.isEmpty()) return true;
+                return txt != null && !txt.isEmpty();
             }
             return false;
                 }
