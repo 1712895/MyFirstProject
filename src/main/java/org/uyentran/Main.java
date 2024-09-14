@@ -38,7 +38,7 @@ public class Main {
         By btnLogin = By.xpath("//button[contains(@translate,'signIn')]");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(txtEmail));
-        driver.findElement(txtEmail).sendKeys("+13434804615");
+        driver.findElement(txtEmail).sendKeys("13434804615");
         wait.until( d -> {
             WebElement element = driver.findElement(dlCountry);
             if(element!=null)
