@@ -27,7 +27,7 @@ public class Main {
         driver.manage().window().maximize();
 
         driver.get("https://globedr.com/signin");
-        login(); //Ko chay duoc -> Chua kiem duoc bug
+        login(); //Ko sendkey duoc -> Chua kiem duoc bug
 
         }
     public static void login()
@@ -38,12 +38,13 @@ public class Main {
         By btnLogin = By.xpath("//button[contains(@translate,'signIn')]");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(txtUserName));
-        driver.findElement(txtUserName).sendKeys("+13434804615"); //Test case: SDT Canada (+1)
+        driver.findElement(txtUserName).sendKeys("13434804615"); //Test case: SDT Canada (+1)
         wait.until( d -> {
             WebElement element = driver.findElement(dlCountry);
             if(element!=null)
             {
                 String txt = element.getText();
+
                 return txt != null && !txt.isEmpty();
             }
             return false;
